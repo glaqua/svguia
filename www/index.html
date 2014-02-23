@@ -36,7 +36,7 @@
             app.controller('TestController', function($scope, $http) {
                 $scope.users = [];
                 $scope.test = function() {
-                    $http({method: 'GET', url: "http://192.168.1.104:3000/users.json"}).success(function(data) {
+                    $http({method: 'GET', url: "http://192.168.1.101:3000/users.json"}).success(function(data) {
                         $scope.users = data;
                     });
 
