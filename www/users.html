@@ -34,10 +34,10 @@
             var app = angular.module('myApp', ['ngRoute']);
 
             app.controller('TestController', function($scope, $http) {
-                $scope.states = [];
+                $scope.users = [];
                 $scope.test = function() {
-                    $http({method: 'GET', url: "http://192.168.1.104:3000/states.json"}).success(function(data) {
-                        $scope.states = data;
+                    $http({method: 'GET', url: "http://192.168.1.104:3000/users.json"}).success(function(data) {
+                        $scope.users = data;
                     });
 
                 };
@@ -49,7 +49,7 @@
     <body ng-app="myApp">
         <div class="app" ng-controller="TestController">
             <ul class="list">
-                <li class="item" ng-repeat="ooo in states">{{ooo.state}}<li>
+                <li class="item" ng-repeat="ooo in users">{{ooo.name}}<li>
             </ul>
         </div>
 <!--
