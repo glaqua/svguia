@@ -23,17 +23,46 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="name-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <link rel="stylesheet" type="text/css" href="css/ionic.min.css" />
+        <link rel="stylesheet" type="text/css" href="ionic/css/ionic.min.css" />
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/angular.min.js"></script>
-        <script type="text/javascript" src="js/angular-route.min.js"></script>
-        
-        <script type="text/javascript">
-            var app = angular.module('myApp', ['ngRoute']);
 
-            app.controller('TestController', function($scope, $http) {
-                $scope.states = [];
+        <script src="ionic/js/ionic.js"></script>
+
+        <script src="ionic/js/angular/angular.js"></script>
+        <script src="ionic/js/angular/angular-resource.js"></script>
+        <script src="ionic/js/angular/angular-animate.js"></script>
+        <script src="ionic/js/angular/angular-route.js"></script>
+        <script src="ionic/js/angular/angular-touch.js"></script>
+        <script src="ionic/js/angular/angular-sanitize.js"></script>
+        <script src="ionic/js/angular-ui/angular-ui-router.js"></script>
+        <script src="ionic/js/ionic-angular.js"></script>
+              
+        <script type="text/javascript">
+            var app = angular.module('myApp', ['ionic','ngRoute']);
+
+            app.controller('CitiesController', function($scope, $http) {
+                $scope.cities = [];
+                $scope.test = function() {
+                    $http({method: 'GET', url: "http://192.168.1.104:3000/cities.json"}).success(function(data) {
+                        $scope.cities = data;
+                    });
+
+                };
+                $scope.test();
+            });
+            app.controller('UsersController', function($scope, $http) {
+                $scope.users = [];
+                $scope.test = function() {
+                    $http({method: 'GET', url: "http://192.168.1.104:3000/users.json"}).success(function(data) {
+                        $scope.users = data;
+                    });
+
+                };
+                $scope.test();
+            });
+            app.controller('StatesController', function($scope, $http) {
+                $scope.States = [];
                 $scope.test = function() {
                     $http({method: 'GET', url: "http://192.168.1.104:3000/states.json"}).success(function(data) {
                         $scope.states = data;
@@ -42,49 +71,81 @@
                 };
                 $scope.test();
             });
+            app.controller('TechnicianController', function($scope, $http) {
+                $scope.Technician = [];
+                $scope.test = function() {
+                    $http({method: 'GET', url: "http://192.168.1.104:3000/technician.json"}).success(function(data) {
+                        $scope.technician = data;
+                    });
+
+                };
+                $scope.test();
+            });
+            app
+            .config(["$routeProvider", function($routeProvider) {
+            $routeProvider
+            .when("/cities", {
+            templateUrl: "cities.html?" ,
+            controller: "CitiesController"
+            })
+            }]);
+            app
+            .config(["$routeProvider", function($routeProvider) {
+            $routeProvider
+            .when("/users", {
+            templateUrl: "users.html?" ,
+            controller: "UsersController"
+            })
+            }]);
+            app
+            .config(["$routeProvider", function($routeProvider) {
+            $routeProvider
+            .when("/states", {
+            templateUrl: "states.html?" ,
+            controller: "StatesController"
+            })
+            }]);
+            app
+            .config(["$routeProvider", function($routeProvider) {
+            $routeProvider
+            .when("/technician", {
+            templateUrl: "technician.html?" ,
+            controller: "TechnicianController"
+            })
+            }]);
         </script>
         <title>Hello World</title>
     </head>
-    <body ng-app="myApp">
-        <div class="app" ng-controller="TestController">
-            <ul class="list">
-                <li class="item" ng-repeat="ooo in states">{{ooo.name}}<li>
-            </ul>
-        </div>
-<!--
-        <button class="button button-icon">
-          <div class="bar bar-header">
-            <button class="button button-icon icon ion-navicon"></button>
-            <div class="h1 title">Header Buttons</div>
-            <button class="button button-clear button-positive">Edit</button>
-          </div>
-        </button> -->
+   <body ng-app="myApp"> 
+
+    <div class="bar bar-header">
+    <button class="button button-icon icon ion-navicon"></button>
+    <div class="h1 title">Header Buttons</div>
+    <button class="button button-clear button-positive">Edit</button></div>
+            
+            
+    <content has-header="true" scroll="true">
+    <div ng-view></div>
+
+    <ul class="list">
+        <li class="item">
+        <a href="#/cities">Cidades</a>
+    </li>
+    <li class="item">
+        <a href="#/states">Estados</a>
+    </li>
+    <li class="item">
+        <a href="#/technician">Prestadores de Serviço</a>
+    </li>
+</ul>
+</content>
+
+      
+     
         
         <script type="text/javascript">
             app.initialize();
         </script>
 
-    <!-- Menu de login   -->
-      <!-- 
-        <form accept-charset="UTF-8" action="/users" class="new_user"
-      id="new_user" method="post">
-
-  <label for="user_name">Name</label>
-  <input id="user_name" name="user[name]" type="text" />
-
-  <label for="user_email">Email</label>
-  <input id="user_email" name="user[email]" type="text" />
-
-  <label for="user_password">Password</label>
-  <input id="user_password" name="user[password]"
-         type="password" />
-
-  <label for="user_password_confirmation">Confirmation</label>
-  <input id="user_password_confirmation"
-         name="user[password_confirmation]" type="password" />
-
-  <input class="btn btn-large btn-primary" name="commit" type="submit"
-         value="Create my account" />
-</form>-->
     </body>
 </html>
