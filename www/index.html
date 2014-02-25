@@ -24,6 +24,7 @@
         <meta name="viewport" content="name-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" type="text/css" href="ionic/css/ionic.min.css" />
+        <!-- <link rel="stylesheet" type="text/css" href="ionic/css/ionicons.css" /> -->
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
 
@@ -118,15 +119,18 @@
     </head>
    <body ng-app="myApp"> 
 
-    <div class="bar bar-header">
+    <div class="bar bar-header bar-balanced">
     <button class="button button-icon icon ion-navicon"></button>
     <div class="h1 title">Guia avaliador de serviços</div>
-    <button class="button button-clear button-positive">Edit</button></div>
+    <button class="button button-clear button-positive">Editar</button></div>
             
             
-    <content has-header="true" scroll="true">
-    <div ng-view></div>
+    <content has-header="true" scroll="true" has-footer="true">
 
+ 
+ 
+    <div ng-view></div>
+<!--
     <ul class="list">
         <li class="item">
         <a href="#/cities">Cidades</a>
@@ -138,7 +142,34 @@
         <a href="#/technician">Prestadores de Serviço</a>
     </li>
 </ul>
+ -->
 </content>
+
+  
+  <div class="tabs tabs-icon-top tabs-balanced">
+  <a class="tab-item" href="#/technician">
+    <i class="icon ion-home"></i>
+    Nome
+  </a>
+  <a class="tab-item" href="#/services">
+    <i class="icon ion-star"></i>
+    Serviço
+  </a>
+  <a class="tab-item" href="#/states">
+    <i class="icon ion-gear-a"></i>
+    Estado
+  </a>
+  <a class="tab-item" href="#/cities">
+    <i class="icon ion-gear-a"></i>
+    Cidade
+  </a>
+  <a class="tab-item" href="#/search">
+    <i class="icon ion-gear-a"></i>
+    Buscar
+  </a>
+</div>
+
+
 
       
      
