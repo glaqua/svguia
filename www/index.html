@@ -84,6 +84,24 @@
                 };
                 $scope.test();
             });
+            app.controller('ServicesController', function($scope, $http) {
+                $scope.Services = [];
+                $scope.test = function() {
+                    $http({method: 'GET', url: "http://192.168.1.104:3000/services.json"}).success(function(data) {
+                        $scope.services = data;
+                    });
+
+                };
+                $scope.test();
+            });
+            app
+            .config(["$routeProvider", function($routeProvider) {
+            $routeProvider
+            .when("/services", {
+            templateUrl: "services.html?" ,
+            controller: "ServicesController"
+            })
+            }]);
             app
             .config(["$routeProvider", function($routeProvider) {
             $routeProvider
@@ -150,23 +168,23 @@
   
   <div class="tabs tabs-icon-top tabs-balanced">
   <a class="tab-item" href="#/technician">
-    <i class="icon ion-home"></i>
+    <i class="icon ion-ios7-people"></i>
     Nome
   </a>
   <a class="tab-item" href="#/services">
-    <i class="icon ion-star"></i>
+    <i class="icon ion-wrench"></i>
     Serviço
   </a>
   <a class="tab-item" href="#/states">
-    <i class="icon ion-gear-a"></i>
+    <i class="icon ion-ios7-world"></i>
     Estado
   </a>
   <a class="tab-item" href="#/cities">
-    <i class="icon ion-gear-a"></i>
+    <i class="icon ion-ios7-world-outline"></i>
     Cidade
   </a>
   <a class="tab-item" href="#/search">
-    <i class="icon ion-gear-a"></i>
+    <i class="icon ion-ios7-search-strong"></i>
     Buscar
   </a>
 </div>
