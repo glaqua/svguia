@@ -56,6 +56,19 @@
                 };
                 $scope.test();
             });
+
+            app.controller('TechnicianController', function($scope, $http, $routeParams) {
+                $scope.Technician = [];
+                $scope.test = function() {
+                    var params = (typeof($routeParams.city_id) != "undefined" && $routeParams.city_id != null) ? "?city_id=" + $routeParams.city_id : "";
+                    $http({method: 'GET', url: "http://192.168.1.104:3000/technician.json" + params}).success(function(data) {
+                        $scope.technician = data;
+                    });
+
+                };
+                $scope.test();
+            });
+            
             app.controller('UsersController', function($scope, $http) {
                 $scope.users = [];
                 $scope.test = function() {
@@ -76,16 +89,18 @@
                 };
                 $scope.test();
             });
-            app.controller('TechnicianController', function($scope, $http) {
-                $scope.Technician = [];
-                $scope.test = function() {
-                    $http({method: 'GET', url: "http://192.168.1.104:3000/technician.json"}).success(function(data) {
-                        $scope.technician = data;
-                    });
+            // app.controller('TechnicianController', function($scope, $http) {
+            //     $scope.Technician = [];
+            //     $scope.test = function() {
+            //         $http({method: 'GET', url: "http://192.168.1.104:3000/technician.json"}).success(function(data) {
+            //             $scope.technician = data;
+            //         });
 
-                };
-                $scope.test();
-            });
+            //     };
+            //     $scope.test();
+            // });
+
+
             app.controller('ServicesController', function($scope, $http) {
                 $scope.Services = [];
                 $scope.test = function() {
@@ -110,6 +125,14 @@
             .when("/cities/:state_id", {
             templateUrl: "cities.html?" ,
             controller: "CitiesController"
+            })
+            }]);
+            app
+            .config(["$routeProvider", function($routeProvider) {
+            $routeProvider
+            .when("/technician/:city_id", {
+            templateUrl: "technician.html?" ,
+            controller: "TechnicianController"
             })
             }]);
              app
@@ -177,7 +200,7 @@
 </content>
 
   
-  <div class="tabs tabs-icon-top tabs-balanced">
+  <div class="tabs tabs-icon-only tabs-balanced">
   <a class="tab-item" href="#/technician">
     <i class="icon ion-ios7-people"></i>
     Nome
