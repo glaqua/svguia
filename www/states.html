@@ -1,3 +1,6 @@
-            <ul class="list">
-                <li class="item" ng-repeat="state in states">{{state.name}}<li>
-            </ul>
+    <div class="list">
+     <a class="item" ng-repeat="state in states" href="#/cities/{{state.id}}" ><img src="img/{{state.name}}.png">&nbsp;&nbsp;&nbsp;&nbsp;{{state.name}}</a>
+    </div>
+
+    
+
