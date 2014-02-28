@@ -1,3 +1,11 @@
-            <ul class="list">
+           <!--  <ul class="list">
                 <li class="item" ng-repeat="service in services">{{service.name}}<li>
-            </ul>
+            </ul> -->
+
+
+
+             <div class="list">
+     <a class="item item-avatar" ng-repeat="service in services" href="#/technician{{city.id}}+{{service.id}}" >
+      <!-- <img src="img/{{city.name}}.png"> -->
+      <h2>{{service.name}}</h2></a>
+    </div>
