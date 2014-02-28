@@ -44,6 +44,11 @@
         <script type="text/javascript">
             var app = angular.module('myApp', ['ionic','ngRoute']);
 
+            app.controller('MainController', function($scope, $http, $routeParams) {
+                $scope.city_id = null;
+
+            });
+
             app.controller('CitiesController', function($scope, $http, $routeParams) {
                 $scope.cities = [];
                 $scope.test = function() {
@@ -68,7 +73,20 @@
                 };
                 $scope.test();
             });
-            
+
+            app.controller('TechnicianController2', function($scope, $http, $routeParams) {
+                $scope.Technician = [];
+                $scope.test = function() {
+                    var params = (typeof($routeParams.id) != "undefined" && $routeParams.id != null) ? "?id=" + $routeParams.id : "";
+                    $http({method: 'GET', url: "http://192.168.1.104:3000/technician.json" + params}).success(function(data) {
+                        $scope.technician = data;
+                    });
+
+                };
+                $scope.test();
+            });
+             
+                        
             app.controller('UsersController', function($scope, $http) {
                 $scope.users = [];
                 $scope.test = function() {
@@ -89,34 +107,34 @@
                 };
                 $scope.test();
             });
-            // app.controller('TechnicianController', function($scope, $http) {
-            //     $scope.Technician = [];
-            //     $scope.test = function() {
-            //         $http({method: 'GET', url: "http://192.168.1.104:3000/technician.json"}).success(function(data) {
-            //             $scope.technician = data;
-            //         });
-
-            //     };
-            //     $scope.test();
-            // });
-
-
-            app.controller('ServicesController', function($scope, $http) {
+            app.controller('ServicesController', function($scope, $http, $routeParams) {
                 $scope.Services = [];
                 $scope.test = function() {
-                    $http({method: 'GET', url: "http://192.168.1.104:3000/services.json"}).success(function(data) {
+                    var params = (typeof($routeParams.city_id) != "undefined" && $routeParams.city_id != null) ? "?city_id=" + $routeParams.city_id : "";
+                    $http({method: 'GET', url: "http://192.168.1.104:3000/services.json" + params}).success(function(data) {
                         $scope.services = data;
                     });
 
                 };
+                $scope.city_id = $routeParams.city_id;
+                $scope.id = $routeParams.id;
                 $scope.test();
             });
+
             app
             .config(["$routeProvider", function($routeProvider) {
             $routeProvider
             .when("/services", {
             templateUrl: "services.html?" ,
             controller: "ServicesController"
+            })
+            }]);
+             app
+            .config(["$routeProvider", function($routeProvider) {
+            $routeProvider
+            .when("/search", {
+            templateUrl: "search.html?" ,
+            controller: "TechnicianController"
             })
             }]);
             app
@@ -130,7 +148,7 @@
             app
             .config(["$routeProvider", function($routeProvider) {
             $routeProvider
-            .when("/technician/:city_id", {
+            .when("/technician/:city_id/:service_id", {
             templateUrl: "technician.html?" ,
             controller: "TechnicianController"
             })
@@ -167,11 +185,19 @@
             controller: "TechnicianController"
             })
             }]);
-
+            app
+            .config(["$routeProvider", function($routeProvider) {
+            $routeProvider
+            .when("/technician_showcase/:id", {
+            templateUrl: "technician_showcase.html?" ,
+            controller: "TechnicianController2"
+            })
+            }]);
+          
         </script>
         <title>Hello World</title>
     </head>
-   <body ng-app="myApp"> 
+   <body ng-app="myApp" ng-controller="MainController"> 
 
     <div class="bar bar-header bar-balanced">
     <button class="button button-icon icon ion-navicon"></button>
