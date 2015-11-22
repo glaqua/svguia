@@ -66,7 +66,7 @@
                 $scope.Technician = [];
                 $scope.test = function() {
                     var params = (typeof($routeParams.city_id) != "undefined" && $routeParams.city_id != null) ? "?city_id=" + $routeParams.city_id : "";
-                    $http({method: 'GET', url: "http://192.168.1.101:3000/technician.json" + params}).success(function(data) {
+                    $http({method: 'GET', url: "http://192.168.1.101:3000/technicians.json" + params}).success(function(data) {
                         $scope.technician = data;
                     });
 
@@ -79,9 +79,9 @@
                 $scope.test = function() {
                     var params = (typeof($routeParams.id) != "undefined" && $routeParams.id != null) ? "?id=" + $routeParams.id : "";
 <<<<<<< HEAD
-                    $http({method: 'GET', url: "http://192.168.1.101:3000/technician.json" + params}).success(function(data) {
+                    $http({method: 'GET', url: "http://192.168.1.101:3000/technicians.json" + params}).success(function(data) {
 =======
-                    $http({method: 'GET', url: "http://192.168.1.104:3000/technician.json" + params}).success(function(data) {
+                    $http({method: 'GET', url: "http://192.168.1.104:3000/technicians.json" + params}).success(function(data) {
 >>>>>>> 3ebae57c12ff3f0ef29abab07c1516782762494a
                         $scope.technician = data;
                     });
@@ -235,7 +235,7 @@
 
   
   <div class="tabs tabs-icon-only">
-  <a class="tab-item" href="#/technician">
+  <a class="tab-item" href="#/users">
     <i class="icon ion-ios7-people"></i>
   </a>
   <a class="tab-item" href="#/services">
