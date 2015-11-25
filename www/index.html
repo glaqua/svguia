@@ -27,9 +27,8 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" type="text/css" href="ionic/css/ionic.min.css" />
         <!-- <link rel="stylesheet" type="text/css" href="ionic/css/ionicons.css" /> -->
-        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        
 
         <script src="ionic/js/ionic.js"></script>
 
@@ -41,7 +40,6 @@
         <script src="ionic/js/angular/angular-sanitize.js"></script>
         <script src="ionic/js/angular-ui/angular-ui-router.js"></script>
         <script src="ionic/js/ionic-angular.js"></script>
-
                
         <script type="text/javascript">
             var app = angular.module('myApp', ['ionic','ngRoute']);
@@ -64,13 +62,11 @@
                 $scope.test();
             });
 
-
-/*
             app.controller('TechnicianController', function($scope, $http, $routeParams) {
                 $scope.Technician = [];
                 $scope.test = function() {
                     var params = (typeof($routeParams.city_id) != "undefined" && $routeParams.city_id != null) ? "?city_id=" + $routeParams.city_id : "";
-                    $http({method: 'GET', url: "http://192.168.1.101:3000/technicians.json" + params}).success(function(data) {
+                    $http({method: 'GET', url: "http://192.168.1.104:3000/technician.json" + params}).success(function(data) {
                         $scope.technician = data;
                     });
 
@@ -78,17 +74,11 @@
                 $scope.test();
             });
 
-*/
-/*
             app.controller('TechnicianController2', function($scope, $http, $routeParams) {
                 $scope.Technician = [];
                 $scope.test = function() {
                     var params = (typeof($routeParams.id) != "undefined" && $routeParams.id != null) ? "?id=" + $routeParams.id : "";
-
-                    $http({method: 'GET', url: "http://192.168.1.101:3000/technicians.json" + params}).success(function(data) {
-
-                    $http({method: 'GET', url: "http://192.168.1.104:3000/technicians.json" + params}).success(function(data) {
-
+                    $http({method: 'GET', url: "http://192.168.1.104:3000/technician.json" + params}).success(function(data) {
                         $scope.technician = data;
                     });
 
@@ -96,7 +86,7 @@
                 $scope.test();
             });
              
-*/                        
+                        
             app.controller('UsersController', function($scope, $http) {
                 $scope.users = [];
                 $scope.test = function() {
@@ -107,31 +97,21 @@
                 };
                 $scope.test();
             });
-
-
-
-/*
             app.controller('StatesController', function($scope, $http) {
                 $scope.States = [];
                 $scope.test = function() {
-                    $http({method: 'GET', url: "http://192.168.1.101:3000/states.json"}).success(function(data) {
+                    $http({method: 'GET', url: "http://192.168.1.104:3000/states.json"}).success(function(data) {
                         $scope.states = data;
                     });
 
                 };
                 $scope.test();
             });
-*/
-            /*
             app.controller('ServicesController', function($scope, $http, $routeParams) {
                 $scope.Services = [];
                 $scope.test = function() {
                     var params = (typeof($routeParams.city_id) != "undefined" && $routeParams.city_id != null) ? "?city_id=" + $routeParams.city_id : "";
-
-                    $http({method: 'GET', url: "http://192.168.1.101:3000/services.json" + params}).success(function(data) {
-
                     $http({method: 'GET', url: "http://192.168.1.104:3000/services.json" + params}).success(function(data) {
-
                         $scope.services = data;
                     });
 
@@ -140,8 +120,7 @@
                 $scope.id = $routeParams.id;
                 $scope.test();
             });
-*/
-/*
+
             app
             .config(["$routeProvider", function($routeProvider) {
             $routeProvider
@@ -182,7 +161,6 @@
             controller: "CitiesController"
             })
             }]);
-*/
             app
             .config(["$routeProvider", function($routeProvider) {
             $routeProvider
@@ -191,8 +169,6 @@
             controller: "UsersController"
             })
             }]);
-
-    /*        
             app
             .config(["$routeProvider", function($routeProvider) {
             $routeProvider
@@ -217,8 +193,6 @@
             controller: "TechnicianController2"
             })
             }]);
-
-*/
           
         </script>
         <title>Hello World</title>
@@ -253,7 +227,7 @@
 
   
   <div class="tabs tabs-icon-only">
-  <a class="tab-item" href="#/users">
+  <a class="tab-item" href="#/technician">
     <i class="icon ion-ios7-people"></i>
   </a>
   <a class="tab-item" href="#/services">
