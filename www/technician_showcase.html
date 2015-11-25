@@ -1,16 +1,18 @@
 
-    <div class="list card">
+ <!--   <div class="list card">
 
-  <div class="item item-avatar" ng-repeat="technician in technician">
-   <img src="img/technician/tech1.jpg">
-    <h2>{{technician.name}}</h2>
-    <p>{{technician.created_at}}</p>
+  <div class="item item-avatar" ng-repeat="user in users">
+  <img src="img/technician/tech1.jpg">  
+    
 
   </div>
+-->
+  <div class="item item-body" ng-selected="user in users">
 
-  <div class="item item-body" ng-repeat="technician in technician">
+    <h2>{{user.name}}</h2>
+    <p>{{user.created_at}}</p>
     <!-- <img class="full-image" src="delorean.jpg"> -->
-    <p>    {{technician.description}}    </p>
+    <p>    {{user.description}}    </p>
     <p>
       <a href="#" class="subdued">1 Like</a>
       <a href="#" class="subdued">5 Comments</a>
